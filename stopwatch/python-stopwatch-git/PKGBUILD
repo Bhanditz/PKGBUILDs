@@ -1,0 +1,27 @@
+pkgname=python-stopwatch-git
+pkgver=510231e
+pkgrel=1
+pkgdesc="Simple Python module to keep track of multiple concurrent timers."
+arch=('any')
+url='https://github.com/dnut/stopwatch'
+license=('GPLv3')
+depends=('python>=3')
+conflicts=('python-stopwatch')
+makedepends=('git')
+source=("$pkgname"::'git+https://github.com/dnut/stopwatch.git')
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/$pkgname"
+	git describe --always --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+	cd $srcdir/$pkgname
+	python setup.py sdist
+}
+
+package() {
+	cd "$srcdir/$pkgname"
+	python setup.py install --root="$pkgdir/" --optimize=1
+}
