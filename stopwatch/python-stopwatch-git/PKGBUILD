@@ -1,5 +1,5 @@
 pkgname=python-stopwatch-git
-pkgver=510231e
+pkgver=r11.97584ad
 pkgrel=1
 pkgdesc="Simple Python module to keep track of multiple concurrent timers."
 arch=('any')
@@ -13,7 +13,7 @@ md5sums=('SKIP')
 
 pkgver() {
 	cd "$srcdir/$pkgname"
-	git describe --always --long | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
