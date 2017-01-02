@@ -1,12 +1,12 @@
 pkgname=python-associations-git
-pkgver=r11.9880240
+pkgver=0.2.1.r3.g827afc3
 pkgrel=1
 pkgdesc="Identify and analyze associations in any data set."
 arch=('any')
 url='https://github.com/dnut/associations'
 license=('GPLv3')
 depends=('python>=3'; 'python-multiprocess'; 'python-numpy'; 'python-matplotlib')
-conflicts=('python-associations')
+conflicts=('python-associations' 'python-associations-dev-git')
 makedepends=('git')
 source=("$pkgname"::'git+https://github.com/dnut/associations.git')
 md5sums=('SKIP')
