@@ -6,14 +6,14 @@ arch=('any')
 url='https://github.com/dnut/associations'
 license=('GPLv3')
 depends=('python>=3'; 'python-multiprocess'; 'python-numpy'; 'python-matplotlib')
-conflicts=('python-associations' 'python-associations-dev-git')
+conflicts=('python-associations')
 makedepends=('git')
 source=("$pkgname"::'git+https://github.com/dnut/associations.git')
 md5sums=('SKIP')
 
 pkgver() {
 	cd "$srcdir/$pkgname"
-	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
